@@ -1,0 +1,6 @@
+folium
+pandas
+geopandas
+matplotlib
+mapclassify
+SPARQLWrapper
