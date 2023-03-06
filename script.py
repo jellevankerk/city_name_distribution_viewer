@@ -4,7 +4,7 @@ import geopandas as gpd
 from src.extraction import WikiDataQueryResults
 from src.queries import settlement_query, provinces_query
 from src.transform import get_latitude_and_longitude, get_geodataframe
-from src.visualize import plot_on_map
+from src.visualize import plot_settlements_on_map
 
 from parameters import  SUBSTRING, PATH_TO_GEODATA, SEED
 
@@ -35,4 +35,4 @@ settlement_sub_geo_df = settlement_df[settlement_df['settlementLabel'].str.conta
 settlement_sub_geo_df = get_geodataframe(settlement_sub_geo_df)
 
 #%% Visualization
-plot_on_map(settlement_sub_geo_df, geodata, SUBSTRING, SEED)
+plot_settlements_on_map(settlement_sub_geo_df, geodata, SUBSTRING, SEED)
