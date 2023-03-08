@@ -16,8 +16,11 @@ class GeopandasGUI(tk.Frame):
         self.master = master
         self.pack()
         self.create_widgets()
-        self.fig = None
-        self.canvas = None
+
+        self.fig, _ = plt.subplots(figsize=(18, 18))
+        self.canvas = FigureCanvasTkAgg(self.fig, master=self.plot_placeholder)
+        self.canvas.draw()
+        self.canvas.get_tk_widget().pack(side='top', fill='both', expand=1)
         
         self.__extract_data()
         self.__transform_data()
@@ -65,13 +68,13 @@ class GeopandasGUI(tk.Frame):
 
         # Filter shapefile by substring entered in the Entry widget
         substring = self.filter_entry.get()
-        print(substring)
         settlement_sub_geo_df = self.settlement_df[self.settlement_df['settlementLabel'].str.contains(substring)]
         
         
-        self.fig, ax = plt.subplots(figsize=(24, 18))
+        self.fig, ax = plt.subplots(figsize=(18, 18))
         
         self.shapefile.plot(ax=ax, alpha=0.4, color="grey")
+        
         # Plot the settlements with the given substring in their name
         settlement_sub_geo_df = get_geodataframe(settlement_sub_geo_df)
         settlement_sub_geo_df.plot(column="provinceLabel", ax=ax, legend=True)
