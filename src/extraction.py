@@ -64,7 +64,7 @@ class WikiDataQueryResults:
         :return: A list of dictionaries, where each dictionary represents a result row and has keys corresponding to the
         variables in the SPARQL SELECT clause.
         """
-        results = self.sparql.query().convert()['results']['bindings']
+        results = self.sparql.queryAndConvert()['results']['bindings']
         results = self.__transform2dicts(results)
         return results
 
