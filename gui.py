@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-from parameters import  SEED
+from parameters import  SEED, PATH_TO_GEODATA
 
 from src.extraction import WikiDataQueryResults
 from src.queries import settlement_query, provinces_query
@@ -31,9 +31,7 @@ class GeopandasGUI(tk.Frame):
 
         self.settlement_df = query1.load_as_dataframe()
         self.provinces = query2.load_as_list(key = 'provinceLabel')
-        shapefile_path = r"city_name_distribution_viewer\src\geoshapes\the-netherlands.geojson"
-
-        self.shapefile = gpd.read_file(shapefile_path)
+        self.shapefile = gpd.read_file(PATH_TO_GEODATA)
     
     def __transform_data(self):
         # Filter on provinces (cleaning step)
